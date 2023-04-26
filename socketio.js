@@ -65,7 +65,11 @@ module.exports = function(RED) {
     ];
 
     function addListener(socket, val, i) {
-      socket.on(val.v, function(msgin) {
+      
+      // If they want to listen to all events
+      const func = val.v === "*" ? socket.onAny : socket.on
+      
+      func(val.v, function(msgin) {
         var msg = {};
         RED.util.setMessageProperty(msg, "payload", msgin, true);
         RED.util.setMessageProperty(msg, "socketIOEvent", val.v, true);

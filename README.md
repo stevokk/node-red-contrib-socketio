@@ -15,7 +15,8 @@ The Socket.IO implementation is made with
 * 1 node to leave a Socket IO room
 
 ## Usage
-To see an example usage go to [Example Chat App](https://flows.nodered.org/flow/71f7da3a14951acb67f94bac1f71812a)
+* To see an example usage go to [Example Chat App](https://flows.nodered.org/flow/71f7da3a14951acb67f94bac1f71812a)
+* To listen to all custom events you can add an asterisk as the rule, like so "*"
 
 ## License
 MIT
