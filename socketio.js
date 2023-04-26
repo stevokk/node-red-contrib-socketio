@@ -47,29 +47,26 @@ module.exports = function(RED) {
     this.rules = n.rules || [];
 
     this.specialIOEvent = [
-	// Events emitted by the Manager:
+	    // Events emitted by the Manager:
       { v: "open" },
       { v: "error" },
-	  { v: "close" },
-	  { v: "ping" },
-	  { v: "packet" },
-	  { v: "reconnect_attempt" },
-	  { v: "reconnect" },
-	  { v: "reconnect_error" },
-	  { v: "reconnect_failed" },
+      { v: "close" },
+      { v: "ping" },
+      { v: "packet" },
+      { v: "reconnect_attempt" },
+      { v: "reconnect" },
+      { v: "reconnect_error" },
+      { v: "reconnect_failed" },
 	  
-	  // Events emitted by the Socket:
+	    // Events emitted by the Socket:
       { v: "connect" },
-	  { v: "connect_error" },
+	    { v: "connect_error" },
       { v: "disconnect" }
     ];
 
     function addListener(socket, val, i) {
-      
-      // If they want to listen to all events
-      const func = val.v === "*" ? socket.onAny : socket.on
-      
-      func(val.v, function(msgin) {
+
+      function callback(msgin) {
         var msg = {};
         RED.util.setMessageProperty(msg, "payload", msgin, true);
         RED.util.setMessageProperty(msg, "socketIOEvent", val.v, true);
@@ -86,7 +83,14 @@ module.exports = function(RED) {
           );
         }
         node.send(msg);
-      });
+      }
+
+      // If they want to listen to all events
+      if (val.v === "*") {
+        socket.onAny(callback);
+      } else {
+        socket.on(val.v, callback);
+      }
     }
 
     io.on("connection", function(socket) {
