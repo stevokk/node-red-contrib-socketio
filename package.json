@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wperw/node-red-contrib-socketio.git"
+    "url": "git+https://github.com/stevokk/node-red-contrib-socketio.git"
   },
   "keywords": [
     "node-red"
@@ -24,7 +24,7 @@
   "author": "Telemaco Gallimberti",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wperw/node-red-contrib-socketio/issues"
+    "url": "https://github.com/stevokk/node-red-contrib-socketio/issues"
   },
-  "homepage": "https://github.com/wperw/node-red-contrib-socketio#readme"
+  "homepage": "https://github.com/stevokk/node-red-contrib-socketio#readme"
 }
