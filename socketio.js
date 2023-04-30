@@ -66,10 +66,12 @@ module.exports = function(RED) {
 
     function addListener(socket, val, i) {
 
-      function callback(msgin) {
+      function callback(eventName, payload) {
+        
         var msg = {};
-        RED.util.setMessageProperty(msg, "payload", msgin, true);
-        RED.util.setMessageProperty(msg, "socketIOEvent", val.v, true);
+
+        RED.util.setMessageProperty(msg, "payload", payload, true);
+        RED.util.setMessageProperty(msg, "socketIOEvent", eventName, true);
         RED.util.setMessageProperty(msg, "socketIOId", socket.id, true);
         if (
           customProperties[RED.util.getMessageProperty(msg, "socketIOId")] !=
